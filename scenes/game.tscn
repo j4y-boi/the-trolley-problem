@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c5i33ihrv3gjt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cj0n"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(2.1391625, 2.137454, 2.1355844, 1)
+ground_bottom_color = Color(0.9793188, 0.9724838, 0.9650057, 1)
+ground_horizon_color = Color(2.1391625, 2.137454, 2.1355844, 1)
+
+[sub_resource type="Sky" id="Sky_uwrxv"]
+sky_material = SubResource("ProceduralSkyMaterial_8cj0n")
+
+[sub_resource type="Environment" id="Environment_yqjtg"]
+background_mode = 2
+sky = SubResource("Sky_uwrxv")
+
+[node name="Node3D" type="Node3D" unique_id=1240598990]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1583382272]
+environment = SubResource("Environment_yqjtg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1457329896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.37573242, 0)
+size = Vector3(20, 0.25, 10)
