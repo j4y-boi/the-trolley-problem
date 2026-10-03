@@ -1,0 +1,312 @@
+[gd_scene format=3 uid="uid://dkaoawwwir4ij"]
+
+[ext_resource type="Script" uid="uid://d0d36cgavx4q3" path="res://scripts/mainmenu.gd" id="1_5mbse"]
+[ext_resource type="Script" uid="uid://cgjafujbxj4i" path="res://scripts/gui_3d.gd" id="2_natt5"]
+[ext_resource type="Texture2D" uid="uid://otwtkpnop60u" path="res://assets/image/pfp_ circle.png" id="3_3vvtq"]
+[ext_resource type="Script" uid="uid://cofw7sywoopgu" path="res://addons/rich_text_3d/rich_text_3d.gd" id="3_s5g8n"]
+[ext_resource type="AudioStream" uid="uid://d8fk6amxoi4h" path="res://assets/audio/trolley theme.wav" id="4_s5g8n"]
+[ext_resource type="Texture2D" uid="uid://bj8do5yvnkrdk" path="res://assets/image/stardance-logo.png" id="5_dfy5j"]
+[ext_resource type="Texture2D" uid="uid://c2rp4efq28twg" path="res://assets/image/Godot_logo.svg" id="6_85riq"]
+[ext_resource type="PackedScene" uid="uid://cn4p8lwv5m6ri" path="res://scenes/main_menu_train.tscn" id="8_85riq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3t4nj"]
+font_size = 50
+
+[sub_resource type="QuadMesh" id="1"]
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r3g3c"]
+viewport_path = NodePath("GUIPanel3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vvtq"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_r3g3c")
+
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(3, 2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfy5j"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h73c4"]
+no_depth_test = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_85riq"]
+material = SubResource("StandardMaterial3D_h73c4")
+size = Vector2(2, 1)
+orientation = 2
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q3kq"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(2.1391625, 2.137454, 2.1355844, 1)
+ground_bottom_color = Color(0.92, 0.92, 0.92, 1)
+ground_horizon_color = Color(0.99116415, 0.99116427, 0.99116415, 1)
+
+[sub_resource type="Sky" id="Sky_uwrxv"]
+sky_material = SubResource("ProceduralSkyMaterial_7q3kq")
+
+[sub_resource type="Environment" id="Environment_5mbse"]
+background_mode = 2
+sky = SubResource("Sky_uwrxv")
+
+[sub_resource type="Animation" id="Animation_7q3kq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5mbse"]
+resource_name = "pan"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(0.1707556, 9.513656),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_natt5"]
+_data = {
+&"RESET": SubResource("Animation_7q3kq"),
+&"pan": SubResource("Animation_5mbse")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q3kq"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3t4nj"]
+material = SubResource("StandardMaterial3D_7q3kq")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="Gradient" id="Gradient_8mjok"]
+offsets = PackedFloat32Array(0, 0.2962963, 0.69753087, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0.085769966, 0.085769966, 0.085769966, 0.91423005, 0.8888889, 0.8888889, 0.8888889, 0.111111104)
+
+[node name="MainMenu" type="Control" unique_id=456535815]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5mbse")
+
+[node name="GUIPanel3D" type="Node3D" parent="." unique_id=695755933]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25162315, -2.0275302)
+script = ExtResource("2_natt5")
+
+[node name="SubViewport" type="SubViewport" parent="GUIPanel3D" unique_id=356657645]
+editor_description = "SubViewport contents can be displayed using a ViewportTexture."
+transparent_bg = true
+gui_embed_subwindows = true
+size = Vector2i(560, 360)
+render_target_update_mode = 4
+
+[node name="GUI" type="Control" parent="GUIPanel3D/SubViewport" unique_id=668329579]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 560.0
+offset_bottom = 360.0
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="GUIPanel3D/SubViewport/GUI" unique_id=546161283]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIPanel3D/SubViewport/GUI/CenterContainer" unique_id=144645857]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GUIPanel3D/SubViewport/GUI/CenterContainer/VBoxContainer" unique_id=1233532571]
+visible = false
+layout_mode = 2
+text = "text"
+label_settings = SubResource("LabelSettings_3t4nj")
+
+[node name="Button" type="Button" parent="GUIPanel3D/SubViewport/GUI/CenterContainer/VBoxContainer" unique_id=424590297]
+layout_mode = 2
+text = "button
+"
+
+[node name="Button2" type="Button" parent="GUIPanel3D/SubViewport/GUI/CenterContainer/VBoxContainer" unique_id=154066111]
+layout_mode = 2
+text = "button
+"
+
+[node name="Button3" type="Button" parent="GUIPanel3D/SubViewport/GUI/CenterContainer/VBoxContainer" unique_id=838734761]
+layout_mode = 2
+text = "button
+"
+
+[node name="Quad" type="MeshInstance3D" parent="GUIPanel3D" unique_id=1326342475]
+editor_description = "To setup this MeshInstance3D:
+* Set Surface Material Override to a new StandardMaterial3D.
+* At the bottom of the StandardMaterial3D's properties, set \"Local to Scene\" to true.
+* Set the Albedo Texture of StandardMaterial3D to new ViewportTexture and set the Viewport Path.
+* Transparency to Alpha.
+* Shading to Unshaded."
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vvtq")
+
+[node name="Area3D" type="Area3D" parent="GUIPanel3D/Quad" unique_id=150863678]
+collision_layer = 2
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GUIPanel3D/Quad/Area3D" unique_id=1684428181]
+shape = SubResource("4")
+
+[node name="RichText3D" type="MeshInstance3D" parent="GUIPanel3D" unique_id=2054702284]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5647579, -0.011262894)
+material_override = SubResource("StandardMaterial3D_dfy5j")
+mesh = SubResource("PlaneMesh_85riq")
+script = ExtResource("3_s5g8n")
+text = "[wave amp=50.0 freq=5.0 connected=]The Trolley Problem[/wave]"
+font_size = 120
+outline_size = 10
+size = Vector2(2, 1)
+text_width = 1075.0
+render_continuously = true
+metadata/_custom_type_script = "uid://cofw7sywoopgu"
+
+[node name="logo" type="Control" parent="." unique_id=1927557525]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="me" type="Control" parent="logo" unique_id=237759836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="logo/me" unique_id=1734352352]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9490196, 0.4509804, 0.23529412, 1)
+
+[node name="PfpCircle" type="Sprite2D" parent="logo/me" unique_id=456983242]
+position = Vector2(640, 360)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_3vvtq")
+
+[node name="stardance" type="Control" parent="logo" unique_id=1828814017]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="logo/stardance" unique_id=1022075793]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043137256, 0.03529412, 0.1254902, 1)
+
+[node name="PfpCircle" type="Sprite2D" parent="logo/stardance" unique_id=1196362103]
+position = Vector2(640, 360)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_dfy5j")
+
+[node name="godot" type="Control" parent="logo" unique_id=1383396996]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="logo/godot" unique_id=1386449745]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.84558344, 0.8580257, 0.8705569, 1)
+
+[node name="PfpCircle" type="Sprite2D" parent="logo/godot" unique_id=1429045435]
+position = Vector2(640, 360)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_85riq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1943897571]
+environment = SubResource("Environment_5mbse")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1656439035]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 1.8484278)
+current = true
+fov = 25.4
+
+[node name="Animation" type="AnimationPlayer" parent="Camera3D" unique_id=62493745]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_natt5")
+
+[node name="AmbientParticles" type="CPUParticles3D" parent="." unique_id=1204721277]
+transform = Transform3D(2.264861, 0, 0, 0, 1, 0, 0, 0, 4.754237, 0, 0.1869686, -0.7949798)
+emitting = false
+amount = 128
+lifetime = 3.0
+randomness = 1.0
+use_fixed_seed = true
+seed = 3694362057
+mesh = SubResource("SphereMesh_3t4nj")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 0.2, 0)
+color_ramp = SubResource("Gradient_8mjok")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=159447651]
+stream = ExtResource("4_s5g8n")
+
+[node name="MenuTrainPivot" type="Node3D" parent="." unique_id=40563975]
+transform = Transform3D(1, 0, 0, 0, 0.95579296, -0.2940403, 0, 0.2940403, 0.95579296, 0, 0.249, -2.4218674)
+
+[node name="track" parent="MenuTrainPivot" unique_id=1905224124 instance=ExtResource("8_85riq")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

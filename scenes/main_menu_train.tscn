@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cn4p8lwv5m6ri"]
+
+[ext_resource type="PackedScene" uid="uid://bwfxmyop0euvy" path="res://assets/3d/Kenney Train Kit/railroad-corner-small.fbx" id="1_q4ydt"]
+[ext_resource type="Script" uid="uid://ck20e1se65mni" path="res://scripts/main_menu_train.gd" id="1_s36vp"]
+[ext_resource type="PackedScene" uid="uid://b2w00twx27k1l" path="res://assets/3d/Kenney Train Kit/train-locomotive-a.fbx" id="3_fmftg"]
+
+[sub_resource type="Animation" id="Animation_lrwql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("small:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w5p7b"]
+resource_name = "rotate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("small:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 6.2831855, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bmq3e"]
+_data = {
+&"RESET": SubResource("Animation_lrwql"),
+&"rotate": SubResource("Animation_w5p7b")
+}
+
+[sub_resource type="Animation" id="Animation_thr6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2mv7a"]
+resource_name = "catch"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 5.3972893, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.79761547, 0), Vector3(0, 0.59864795, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1bgk5"]
+_data = {
+&"RESET": SubResource("Animation_thr6l"),
+&"catch": SubResource("Animation_2mv7a")
+}
+
+[node name="track" type="Node3D" unique_id=1905224124]
+script = ExtResource("1_s36vp")
+
+[node name="small" type="Node3D" parent="." unique_id=1180138972]
+
+[node name="railroad-corner-small2" parent="small" unique_id=1618301624 instance=ExtResource("1_q4ydt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="railroad-corner-small3" parent="small" unique_id=1246074348 instance=ExtResource("1_q4ydt")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0, 0, 2)
+
+[node name="railroad-corner-small4" parent="small" unique_id=1898720243 instance=ExtResource("1_q4ydt")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, 0)
+
+[node name="railroad-corner-small5" parent="small" unique_id=1191003542 instance=ExtResource("1_q4ydt")]
+transform = Transform3D(1.3113414e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 1.3113414e-07, 0, 0, -2)
+
+[node name="train-locomotive-a" parent="." unique_id=1210970894 instance=ExtResource("3_fmftg")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.9410022, 0.050021946, -0.030196011)
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=134066232]
+libraries/ = SubResource("AnimationLibrary_bmq3e")
+
+[node name="anim2" type="AnimationPlayer" parent="." unique_id=1666359829]
+libraries/ = SubResource("AnimationLibrary_1bgk5")

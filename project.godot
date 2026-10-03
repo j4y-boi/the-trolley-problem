@@ -14,7 +14,6 @@ config/name="The Trolley Problem"
 config/description="The expanded multiverse of the trolley problem."
 config/version="0.0.1"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 
@@ -25,7 +24,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg", "res://addons/rich_text_3d/plugin.cfg")
 
 [physics]
 
