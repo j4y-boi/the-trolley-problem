@@ -10,6 +10,6 @@ func _ready() -> void:
 
 func effect() -> void:
 	while true:
-		await get_tree().create_timer(randf_range(1.0, 4.0)).timeout
+		await get_tree().create_timer(randf_range(3.0, 8.0)).timeout
 		anim_2.play("catch")
 		await anim_2.animation_finished

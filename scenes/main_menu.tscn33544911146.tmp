@@ -105,19 +105,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(468, 740)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonSet2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(102, 740)]
+"values": [Vector2(468, 646)]
 }
 
 [sub_resource type="Animation" id="Animation_tbmy8"]
@@ -130,40 +118,16 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.22531241, 1),
+"transitions": PackedFloat32Array(5.4641585, 1),
 "update": 0,
-"values": [Vector2(0, 740), Vector2(0, 646)]
-}
-
-[sub_resource type="Animation" id="Animation_jk1qb"]
-resource_name = "intro2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonSet2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.225, 0.07179382),
-"update": 0,
-"values": [Vector2(0, 740), Vector2(0, 646)]
+"values": [Vector2(468, 740), Vector2(468, 646)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jk1qb"]
 _data = {
 &"RESET": SubResource("Animation_oa1go"),
-&"intro": SubResource("Animation_tbmy8"),
-&"intro2": SubResource("Animation_jk1qb")
+&"intro": SubResource("Animation_tbmy8")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
-bg_color = Color(0.051970966, 0.05197096, 0.05197095, 0.6039216)
-corner_radius_top_right = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_oa1go"]
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
 content_margin_bottom = 3.0
@@ -384,60 +348,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GuiTransition" type="AnimationPlayer" parent="gui" unique_id=1129413359]
+[node name="gui_transition" type="AnimationPlayer" parent="gui" unique_id=1129413359]
 libraries/ = SubResource("AnimationLibrary_jk1qb")
 
 [node name="buttons" type="HBoxContainer" parent="gui" unique_id=809772604]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 468.0
-offset_top = 20.0
-offset_right = 468.0
-offset_bottom = 94.0
-grow_horizontal = 2
+offset_left = -812.0
+offset_top = -74.0
+grow_horizontal = 0
 grow_vertical = 0
-
-[node name="version" type="Button" parent="gui/buttons" unique_id=1698358572]
-custom_minimum_size = Vector2(0, 35)
-custom_maximum_size = Vector2(-1, 50)
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_lgwnu")
-text = "              "
-alignment = 2
-
-[node name="VersionText" type="Label" parent="gui/buttons/version" unique_id=1767280956]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 21
-text = "v0.0.1"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="Spacer" type="Control" parent="gui/buttons" unique_id=1136996460]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="gui/buttons" unique_id=815646276]
-layout_mode = 2
-text = "(yes, the play button is disabled,
-there isn't any gameplay yet lol)"
-label_settings = SubResource("LabelSettings_oa1go")
 
 [node name="Play" type="Button" parent="gui/buttons" unique_id=1970197590]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = SubResource("Theme_c12me")
-disabled = true
 text = "Play"
 
 [node name="Extras" type="Button" parent="gui/buttons" unique_id=1638127236]
@@ -450,7 +379,6 @@ text = "Extra's"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = SubResource("Theme_c12me")
-disabled = true
 text = "Options"
 
 [node name="Exit" type="Button" parent="gui/buttons" unique_id=18732194]
@@ -458,57 +386,3 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = SubResource("Theme_c12me")
 text = "Exit"
-
-[node name="ButtonSet2" type="HBoxContainer" parent="gui" unique_id=1688220395]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 102.0
-offset_top = 20.0
-offset_right = 102.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Spacer" type="Control" parent="gui/ButtonSet2" unique_id=1933943584]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="gui/ButtonSet2" unique_id=2070832972]
-layout_mode = 2
-text = "(a lot is still unfinished, stay tuned though)"
-label_settings = SubResource("LabelSettings_oa1go")
-
-[node name="Credits" type="Button" parent="gui/ButtonSet2" unique_id=1449009670]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = SubResource("Theme_c12me")
-disabled = true
-text = "Credits"
-
-[node name="Endings" type="Button" parent="gui/ButtonSet2" unique_id=541789023]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = SubResource("Theme_c12me")
-disabled = true
-text = "Endings"
-
-[node name="Music" type="Button" parent="gui/ButtonSet2" unique_id=1143633939]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = SubResource("Theme_c12me")
-disabled = true
-text = "Music"
-
-[node name="Back" type="Button" parent="gui/ButtonSet2" unique_id=1995906772]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = SubResource("Theme_c12me")
-text = "Back"
-
-[connection signal="pressed" from="gui/buttons/version" to="." method="_on_version_pressed"]
-[connection signal="pressed" from="gui/buttons/Extras" to="." method="_on_extras_pressed"]
-[connection signal="pressed" from="gui/buttons/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="gui/ButtonSet2/Back" to="." method="_on_back_pressed"]

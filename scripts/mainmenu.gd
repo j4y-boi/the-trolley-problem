@@ -2,21 +2,36 @@ extends Control
 @onready var ambient_particles: CPUParticles3D = $AmbientParticles
 @onready var animation: AnimationPlayer = $Camera3D/Animation
 @onready var music: AudioStreamPlayer = $AudioStreamPlayer
+@onready var camera: Camera3D = $Camera3D
+
+#intro stuff
+@onready var logo: Control = $logo
 @onready var my_logo: Control = $logo/me
 @onready var stardance: Control = $logo/stardance
 @onready var godot: Control = $logo/godot
-@onready var camera: Camera3D = $Camera3D
+
+@onready var gui: Control = $gui
+@onready var gui_transition: AnimationPlayer = $gui/GuiTransition
+@onready var buttons: HBoxContainer = $gui/buttons
+@onready var button_set_2: HBoxContainer = $gui/ButtonSet2
+@onready var version_text: Label = $gui/buttons/version/VersionText
 
 var stength:float = 0.01
 var origin
-var skip = true
+
+var version = ProjectSettings.get_setting("application/config/version")
+var skip = false
 
 func _ready() -> void:
+	version_text.text = "v"+str(version) 
 	music.play()
+	
 	ambient_particles.emitting = false
 	my_logo.hide()
 	stardance.hide()
 	godot.hide()
+	
+	logo.show()
 	origin = camera.position
 	do_it()
 
@@ -49,4 +64,24 @@ func do_it() -> void:
 	ambient_particles.emitting = true
 	animation.play("pan")
 	await animation.animation_finished
-	
+	gui_transition.play("intro")
+
+func _on_extras_pressed() -> void:
+	gui_transition.play_backwards("intro")
+	await gui_transition.animation_finished
+	gui_transition.play("intro2")
+	button_set_2.show()
+	buttons.hide()
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+
+func _on_back_pressed() -> void:
+	gui_transition.play_backwards("intro2")
+	await gui_transition.animation_finished
+	gui_transition.play("intro")
+	buttons.show()
+	button_set_2.hide()
+
+func _on_version_pressed() -> void:
+	OS.shell_open("https://github.com/j4y-boi/the-trolley-problem/releases/tag/v"+str(version))
