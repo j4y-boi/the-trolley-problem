@@ -252,6 +252,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="me" type="Control" parent="logo" unique_id=237759836]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -268,10 +269,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9490196, 0.4509804, 0.23529412, 1)
 
-[node name="PfpCircle" type="Sprite2D" parent="logo/me" unique_id=456983242]
-position = Vector2(640, 360)
-scale = Vector2(0.25, 0.25)
+[node name="TextureRect" type="TextureRect" parent="logo/me" unique_id=281633114]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -112.5
+offset_right = 112.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_lgwnu")
+expand_mode = 3
 
 [node name="stardance" type="Control" parent="logo" unique_id=1828814017]
 visible = false
@@ -291,10 +303,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.043137256, 0.03529412, 0.1254902, 1)
 
-[node name="PfpCircle" type="Sprite2D" parent="logo/stardance" unique_id=1196362103]
-position = Vector2(640, 360)
-scale = Vector2(0.25, 0.25)
+[node name="TextureRect" type="TextureRect" parent="logo/stardance" unique_id=2092614061]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.432434
+offset_top = -20.0
+offset_right = 52.432434
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_flqon")
+expand_mode = 5
+stretch_mode = 4
 
 [node name="godot" type="Control" parent="logo" unique_id=1383396996]
 visible = false
@@ -314,10 +339,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.84558344, 0.8580257, 0.8705569, 1)
 
-[node name="PfpCircle" type="Sprite2D" parent="logo/godot" unique_id=1429045435]
-position = Vector2(640, 360)
-scale = Vector2(0.5, 0.5)
+[node name="TextureRect" type="TextureRect" parent="logo/godot" unique_id=872258050]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("6_rcqid")
+expand_mode = 5
+stretch_mode = 4
 
 [node name="RichText3D" type="MeshInstance3D" parent="." unique_id=2054702284]
 process_mode = 3
@@ -332,7 +370,6 @@ size = Vector2(2, 1)
 text_width = 1075.0
 render_continuously = true
 unshaded = false
-metadata/_custom_type_script = "uid://cofw7sywoopgu"
 
 [node name="RichText3D2" type="MeshInstance3D" parent="." unique_id=6236405]
 transform = Transform3D(-0.45235434, 0.3497387, 0.82040155, 0.0018804212, 0.9202712, -0.39127663, -0.89183646, -0.17545292, -0.41694638, -1.4717121, 0.624906, -1.0093607)
@@ -345,7 +382,6 @@ outline_size = 6
 size = Vector2(2, 1)
 text_width = 1075.0
 render_continuously = true
-metadata/_custom_type_script = "uid://cofw7sywoopgu"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1656439035]
 transform = Transform3D(-0.44931895, -0.2552258, 0.856138, 0, 0.9583226, 0.28568837, -0.8933714, 0.1283652, -0.4305925, 0.93485117, -0.1306004, -2.5947394)

@@ -44,18 +44,21 @@ func _process(_delta: float) -> void:
 	var offset = Vector3(mx * stength, -my * stength, 0)
 	camera.position = origin + offset
 
+var logo_interval = 1.7
 func do_it() -> void:
 	if not skip:
 		my_logo.show()
-		await get_tree().create_timer(1.7).timeout
+		while not music.playing:
+			await get_tree().process_frame
+		await get_tree().create_timer(logo_interval).timeout
 
 		stardance.show()
-		await get_tree().create_timer(1.7).timeout
+		await get_tree().create_timer(logo_interval).timeout
 
 		godot.show()
 		my_logo.hide()
 		stardance.hide()
-		await get_tree().create_timer(1.7).timeout
+		await get_tree().create_timer(logo_interval).timeout
 		
 		var tween = self.create_tween()
 		tween.tween_property(godot, "modulate:a", 0, 1.5)
