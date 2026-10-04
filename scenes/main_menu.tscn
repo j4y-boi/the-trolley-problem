@@ -21,23 +21,24 @@ sky_material = SubResource("ProceduralSkyMaterial_7q3kq")
 background_mode = 2
 sky = SubResource("Sky_uwrxv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbmy8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
 resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_jk1qb"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_tbmy8"]
 size = Vector2(2, 1)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk1qb"]
+resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tbmy8"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_5dd4i"]
 size = Vector2(2, 1)
 orientation = 2
 
@@ -321,8 +322,8 @@ texture = ExtResource("6_rcqid")
 [node name="RichText3D" type="MeshInstance3D" parent="." unique_id=2054702284]
 process_mode = 3
 transform = Transform3D(-0.45235434, 0.34973872, 0.82040167, 0.0018804213, 0.9202713, -0.3912765, -0.89183646, -0.17545286, -0.4169463, -1.3524762, 0.93865275, -1.0691775)
-material_override = SubResource("StandardMaterial3D_tbmy8")
-mesh = SubResource("PlaneMesh_jk1qb")
+material_override = SubResource("StandardMaterial3D_oa1go")
+mesh = SubResource("PlaneMesh_tbmy8")
 script = ExtResource("3_5dd4i")
 text = "[wave amp=30.0 freq=2.0 connected=2]The Trolley Problem[/wave]"
 font_size = 120
@@ -335,8 +336,8 @@ metadata/_custom_type_script = "uid://cofw7sywoopgu"
 
 [node name="RichText3D2" type="MeshInstance3D" parent="." unique_id=6236405]
 transform = Transform3D(-0.45235434, 0.3497387, 0.82040155, 0.0018804212, 0.9202712, -0.39127663, -0.89183646, -0.17545292, -0.41694638, -1.4717121, 0.624906, -1.0093607)
-material_override = SubResource("StandardMaterial3D_oa1go")
-mesh = SubResource("PlaneMesh_tbmy8")
+material_override = SubResource("StandardMaterial3D_jk1qb")
+mesh = SubResource("PlaneMesh_5dd4i")
 script = ExtResource("3_5dd4i")
 text = "[shake rate=20.0 level=5 connected=1](final title still on the way lol)[/shake]"
 font_size = 53
@@ -478,7 +479,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="gui/ButtonSet2" unique_id=2070832972]
 layout_mode = 2
-text = "(a lot is still unfinished, stay tuned though)"
+text = "(all of this is unfinished, stay tuned though)"
 label_settings = SubResource("LabelSettings_oa1go")
 
 [node name="Credits" type="Button" parent="gui/ButtonSet2" unique_id=1449009670]
