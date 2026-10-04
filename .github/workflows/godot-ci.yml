@@ -65,6 +65,8 @@ jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     container:
       image: barichello/godot-ci:4.7.2
     steps:
