@@ -12,7 +12,7 @@ config_version=5
 
 config/name="The Trolley Problem"
 config/description="The expanded multiverse of the trolley problem."
-config/version="0.0.2"
+config/version="0.0.3"
 run/main_scene="uid://byxmimoilwltk"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
