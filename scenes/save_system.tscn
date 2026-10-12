@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b5a4m2smwbkvm"]
+
+[ext_resource type="Script" uid="uid://ckypc3ko7lbih" path="res://scripts/save_system.gd" id="1_iwv0b"]
+
+[node name="SaveSystem" type="Node" unique_id=661436368]
+script = ExtResource("1_iwv0b")
+
+[node name="AutosaveTimer" type="Timer" parent="." unique_id=2543019]
+wait_time = 30.0
+
+[node name="AutosaveIconTimer" type="Timer" parent="." unique_id=1975215072]
+wait_time = 3.0
+one_shot = true
+
+[node name="SaveIcon" type="RichTextLabel" parent="." unique_id=1926320393]
+offset_right = 57.0
+offset_bottom = 79.0
+text = "saving saving saving"

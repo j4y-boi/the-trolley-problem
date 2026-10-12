@@ -162,6 +162,14 @@ _data = {
 bg_color = Color(0.051970966, 0.05197096, 0.05197095, 0.6039216)
 corner_radius_top_right = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flqon"]
+bg_color = Color(0, 0, 0, 0.6039216)
+corner_radius_top_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcqid"]
+bg_color = Color(0.13319641, 0.13319641, 0.13319638, 0.6039216)
+corner_radius_top_right = 20
+
 [sub_resource type="LabelSettings" id="LabelSettings_oa1go"]
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -252,7 +260,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="me" type="Control" parent="logo" unique_id=237759836]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -357,6 +364,12 @@ texture = ExtResource("6_rcqid")
 expand_mode = 5
 stretch_mode = 4
 
+[node name="Label" type="Label" parent="logo" unique_id=1076858836]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Press Space to skip opening logo's"
+
 [node name="RichText3D" type="MeshInstance3D" parent="." unique_id=2054702284]
 process_mode = 3
 transform = Transform3D(-0.45235434, 0.34973872, 0.82040167, 0.0018804213, 0.9202713, -0.3912765, -0.89183646, -0.17545286, -0.4169463, -1.3524762, 0.93865275, -1.0691775)
@@ -444,6 +457,8 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_lgwnu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_flqon")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rcqid")
 text = "              "
 alignment = 2
 

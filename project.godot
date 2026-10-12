@@ -16,6 +16,10 @@ config/version="0.0.4"
 run/main_scene="uid://byxmimoilwltk"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[autoload]
+
+GameState="*uid://dj4huw3lnooag"
+
 [display]
 
 window/size/viewport_width=1280

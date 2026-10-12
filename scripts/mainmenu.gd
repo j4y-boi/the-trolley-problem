@@ -64,10 +64,28 @@ func do_it() -> void:
 		tween.tween_property(godot, "modulate:a", 0, 1.5)
 		tween.tween_interval(3)
 		await tween.finished
-	ambient_particles.emitting = true
-	animation.play("pan")
-	await animation.animation_finished
-	gui_transition.play("intro")
+	
+	if not skipping:
+		ambient_particles.emitting = true
+		animation.play("pan")
+		await animation.animation_finished
+		gui_transition.play("intro")
+
+var skipping:bool = false
+
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("ui_accept") and not skipping:
+		skipping = true
+		var tween = self.create_tween()
+		tween.tween_property(logo, "modulate:a", 0.0, .5)
+		tween.tween_interval(1)
+		await tween.finished
+		await get_tree().process_frame
+		
+		ambient_particles.emitting = true
+		animation.play("pan")
+		await animation.animation_finished
+		gui_transition.play("intro")
 
 func _on_extras_pressed() -> void:
 	gui_transition.play_backwards("intro")

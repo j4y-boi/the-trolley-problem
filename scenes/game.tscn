@@ -21,8 +21,14 @@ sky = SubResource("Sky_uwrxv")
 environment = SubResource("Environment_yqjtg")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1457329896]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.37573242, 0)
-size = Vector3(20, 0.25, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.37573242, -5.3691406)
+size = Vector3(20, 0.25, 30.738281)
 
 [node name="railroad-straight" parent="." unique_id=233166032 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -4.603665)
+
+[node name="railroad-straight2" parent="." unique_id=1737503378 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -8.582971)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1315079253]
+transform = Transform3D(0.19193721, 0.6646956, -0.7220389, -0.039454795, 0.7403493, 0.6710638, 0.9806139, -0.100314215, 0.16832602, -0.113947436, 1.7360784, 0.5946787)
