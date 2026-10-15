@@ -13,6 +13,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="SaveIcon" type="RichTextLabel" parent="." unique_id=1926320393]
+visible = false
 offset_right = 57.0
 offset_bottom = 79.0
 text = "saving saving saving"

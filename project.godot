@@ -19,6 +19,8 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [autoload]
 
 GameState="*uid://dj4huw3lnooag"
+DialogSystem="*uid://c6cyl856567nc"
+SaveSystem="*uid://b5a4m2smwbkvm"
 
 [display]
 

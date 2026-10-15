@@ -21,8 +21,10 @@ var origin
 
 var version = ProjectSettings.get_setting("application/config/version")
 var skip = false
+var enable_parallax = false
 
 func _ready() -> void:
+	animation.play("RESET")
 	version_text.text = "v"+str(version) 
 	music.play()
 	
@@ -32,7 +34,6 @@ func _ready() -> void:
 	godot.hide()
 	
 	logo.show()
-	origin = camera.position
 	do_it()
 
 func _process(_delta: float) -> void:
@@ -41,8 +42,9 @@ func _process(_delta: float) -> void:
 	var mx = (mouse.x / viewport_size.x - 0.5) * 2.0
 	var my = (mouse.y / viewport_size.y - 0.5) * 2.0
 
-	var offset = Vector3(mx * stength, -my * stength, 0)
-	camera.position = origin + offset
+	if enable_parallax:
+		var offset = Vector3(mx * stength, -my * stength, 0)
+		camera.position = origin + offset
 
 var logo_interval = 1.7
 func do_it() -> void:
@@ -69,6 +71,8 @@ func do_it() -> void:
 		ambient_particles.emitting = true
 		animation.play("pan")
 		await animation.animation_finished
+		enable_parallax = true
+		origin = camera.position
 		gui_transition.play("intro")
 
 var skipping:bool = false
@@ -84,6 +88,8 @@ func _unhandled_input(event: InputEvent):
 		
 		ambient_particles.emitting = true
 		animation.play("pan")
+		enable_parallax = true
+		origin = camera.position
 		await animation.animation_finished
 		gui_transition.play("intro")
 
@@ -106,3 +112,16 @@ func _on_back_pressed() -> void:
 
 func _on_version_pressed() -> void:
 	OS.shell_open("https://github.com/j4y-boi/the-trolley-problem/releases/tag/v"+str(version))
+
+func _on_play_pressed() -> void:
+	if not animation.is_playing():
+		enable_parallax = false
+		animation.play("pan_to_save")
+		
+		gui_transition.play_backwards("intro")
+		await gui_transition.animation_finished
+		gui_transition.play("intro3")
+		
+		await animation.animation_finished
+		enable_parallax = true
+		origin = camera.position 

@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c2rp4efq28twg" path="res://assets/image/Godot_logo.svg" id="6_rcqid"]
 [ext_resource type="AudioStream" uid="uid://d8fk6amxoi4h" path="res://assets/audio/trolley theme.wav" id="7_1ajci"]
 [ext_resource type="PackedScene" uid="uid://cn4p8lwv5m6ri" path="res://scenes/main_menu_train.tscn" id="8_7b55j"]
+[ext_resource type="Theme" uid="uid://cpe5vv3vnpuik" path="res://assets/gui_theme.tres" id="8_tbmy8"]
+[ext_resource type="Script" uid="uid://bu5k1xad3onsp" path="res://scripts/save_menu.gd" id="9_jk1qb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q3kq"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -56,6 +58,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-0.28972465, 2.0367992, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.93485117, -0.1306004, -2.5947394)]
+}
 
 [sub_resource type="Animation" id="Animation_5mbse"]
 resource_name = "pan"
@@ -73,10 +87,39 @@ tracks/0/keys = {
 "values": [Vector3(-0.28972465, 2.0367992, 0), Vector3(0.2691546, 2.0368717, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_5dd4i"]
+resource_name = "pan_to_save"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4666667),
+"transitions": PackedFloat32Array(0.5743493, 0.4829683),
+"update": 0,
+"values": [Vector3(0.93485117, -0.1306004, -2.5947394), Vector3(0.6325189, 0.32526726, 0.7247312)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4666667),
+"transitions": PackedFloat32Array(0.5743493, 0.4829683),
+"update": 0,
+"values": [Vector3(0.26915464, 2.0368717, 0), Vector3(-0.03191467, 0.20427586, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_natt5"]
 _data = {
 &"RESET": SubResource("Animation_7q3kq"),
-&"pan": SubResource("Animation_5mbse")
+&"pan": SubResource("Animation_5mbse"),
+&"pan_to_save": SubResource("Animation_5dd4i")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q3kq"]
@@ -120,6 +163,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(102, 740)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SaveMenu:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(300, -491)]
+}
 
 [sub_resource type="Animation" id="Animation_tbmy8"]
 resource_name = "intro"
@@ -151,11 +206,28 @@ tracks/0/keys = {
 "values": [Vector2(0, 740), Vector2(0, 646)]
 }
 
+[sub_resource type="Animation" id="Animation_lgwnu"]
+resource_name = "intro3"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SaveMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.2102241, 1),
+"update": 0,
+"values": [Vector2(300, -491), Vector2(300, 168.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jk1qb"]
 _data = {
 &"RESET": SubResource("Animation_oa1go"),
 &"intro": SubResource("Animation_tbmy8"),
-&"intro2": SubResource("Animation_jk1qb")
+&"intro2": SubResource("Animation_jk1qb"),
+&"intro3": SubResource("Animation_lgwnu")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
@@ -174,38 +246,23 @@ corner_radius_top_right = 20
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
-content_margin_bottom = 3.0
-bg_color = Color(0.24494177, 0.17621005, 0.0929833, 0.78431374)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.35156274, 0.35156295, 0.35156274, 1)
-shadow_color = Color(0, 0, 0, 0.20784314)
-shadow_offset = Vector2(15, 15)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ajci"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.40170825, 0.4364735, 0.50601166, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
-content_margin_bottom = 3.0
-bg_color = Color(0.27058825, 0.19607843, 0.105882354, 0.78431374)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-shadow_color = Color(0, 0, 0, 0.20784314)
-shadow_offset = Vector2(15, 15)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk1qb"]
-content_margin_bottom = 3.0
-bg_color = Color(0.47988498, 0.36052552, 0.21509019, 0.78431374)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-shadow_color = Color(0, 0, 0, 0.20784314)
-shadow_offset = Vector2(15, 15)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy8r0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b55j"]
 content_margin_bottom = 3.0
 bg_color = Color(0.27058825, 0.19607843, 0.105882354, 0.78431374)
 border_width_left = 4
@@ -213,26 +270,12 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.6052743, 0.6052744, 0.6052741, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 shadow_color = Color(0, 0, 0, 0.20784314)
 shadow_offset = Vector2(15, 15)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
-content_margin_bottom = 3.0
-bg_color = Color(0.17923877, 0.12542093, 0.06021353, 0.78431374)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-shadow_color = Color(0, 0, 0, 0.20784314)
-shadow_offset = Vector2(15, 15)
-
-[sub_resource type="Theme" id="Theme_c12me"]
-Button/font_sizes/font_size = 48
-Button/styles/disabled = SubResource("StyleBoxFlat_oa1go")
-Button/styles/focus = SubResource("StyleBoxFlat_tbmy8")
-Button/styles/hover = SubResource("StyleBoxFlat_jk1qb")
-Button/styles/normal = SubResource("StyleBoxFlat_xy8r0")
-Button/styles/pressed = SubResource("StyleBoxFlat_5dd4i")
 
 [node name="MainMenu" type="Control" unique_id=456535815]
 layout_mode = 3
@@ -397,17 +440,17 @@ text_width = 1075.0
 render_continuously = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1656439035]
-transform = Transform3D(-0.44931895, -0.2552258, 0.856138, 0, 0.9583226, 0.28568837, -0.8933714, 0.1283652, -0.4305925, 0.93485117, -0.1306004, -2.5947394)
+transform = Transform3D(0.9792082, -0.0064730532, 0.20275483, 0, 0.9994908, 0.031909265, -0.20285812, -0.031245813, 0.9787096, 0.6325189, 0.32526726, 0.7247312)
 current = true
 fov = 25.4
 
 [node name="Animation" type="AnimationPlayer" parent="Camera3D" unique_id=62493745]
+reset_on_save = false
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_natt5")
 
 [node name="AmbientParticles" type="CPUParticles3D" parent="." unique_id=1204721277]
 transform = Transform3D(1.5097756, 0, 0, 0, 1, 0, 0, 0, 2.3048024, -2.1561775, 0.1869686, -1.838756)
-emitting = false
 amount = 64
 lifetime = 3.0
 randomness = 1.0
@@ -415,7 +458,7 @@ use_fixed_seed = true
 seed = 3694362057
 mesh = SubResource("SphereMesh_3t4nj")
 emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
+emission_box_extents = Vector3(1.52, 1, 1)
 spread = 180.0
 gravity = Vector3(0, 0.2, 0)
 color_ramp = SubResource("Gradient_8mjok")
@@ -479,36 +522,29 @@ vertical_alignment = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="gui/buttons" unique_id=815646276]
-layout_mode = 2
-text = "(yes, the play button is disabled,
-there isn't any gameplay yet lol)"
-label_settings = SubResource("LabelSettings_oa1go")
-
 [node name="Play" type="Button" parent="gui/buttons" unique_id=1970197590]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
-disabled = true
+theme = ExtResource("8_tbmy8")
 text = "Play"
 
 [node name="Extras" type="Button" parent="gui/buttons" unique_id=1638127236]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
 text = "Extra's"
 
 [node name="Options" type="Button" parent="gui/buttons" unique_id=1044595991]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
 disabled = true
 text = "Options"
 
 [node name="Exit" type="Button" parent="gui/buttons" unique_id=18732194]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
 text = "Exit"
 
 [node name="ButtonSet2" type="HBoxContainer" parent="gui" unique_id=1688220395]
@@ -536,31 +572,205 @@ label_settings = SubResource("LabelSettings_oa1go")
 [node name="Credits" type="Button" parent="gui/ButtonSet2" unique_id=1449009670]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
 disabled = true
 text = "Credits"
 
 [node name="Endings" type="Button" parent="gui/ButtonSet2" unique_id=541789023]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
 disabled = true
 text = "Endings"
 
 [node name="Music" type="Button" parent="gui/ButtonSet2" unique_id=1143633939]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
 disabled = true
 text = "Music"
 
 [node name="Back" type="Button" parent="gui/ButtonSet2" unique_id=1995906772]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme = SubResource("Theme_c12me")
+theme = ExtResource("8_tbmy8")
+text = "Back"
+
+[node name="Credits" type="PanelContainer" parent="gui" unique_id=850113792]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -37.0
+offset_right = 27.5
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="gui/Credits" unique_id=1416481078]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="gui/Credits/VBoxContainer" unique_id=1524636297]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gui/Credits/VBoxContainer" unique_id=1529556504]
+layout_mode = 2
+text = "me"
+fit_content = true
+
+[node name="SaveMenu" type="PanelContainer" parent="gui" unique_id=1724462825]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -851.0
+offset_right = 340.0
+offset_bottom = -468.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ajci")
+script = ExtResource("9_jk1qb")
+
+[node name="Content" type="VBoxContainer" parent="gui/SaveMenu" unique_id=447229420]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="RichTextLabel" parent="gui/SaveMenu/Content" unique_id=360596303]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Save Files"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveSlots" type="HBoxContainer" parent="gui/SaveMenu/Content" unique_id=1147838689]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Slot1" type="Button" parent="gui/SaveMenu/Content/SaveSlots" unique_id=947783273]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("8_tbmy8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7b55j")
+text = "Slot 1"
+
+[node name="VersionLabel" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot1" unique_id=1826876931]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "v0.01"
+
+[node name="LastSaved" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot1" unique_id=1432149481]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.5
+offset_top = -49.0
+offset_right = 88.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Last saved:
+July 42nd 2039 at 30:20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot2" type="Button" parent="gui/SaveMenu/Content/SaveSlots" unique_id=1813812678]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("8_tbmy8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7b55j")
+text = "Slot 1"
+
+[node name="VersionLabel" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot2" unique_id=1530567843]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "v0.01"
+
+[node name="LastSaved" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot2" unique_id=1242219602]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.5
+offset_top = -49.0
+offset_right = 88.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Last saved:
+July 42nd 2039 at 30:20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot3" type="Button" parent="gui/SaveMenu/Content/SaveSlots" unique_id=1112808382]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("8_tbmy8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7b55j")
+text = "Slot 1"
+
+[node name="VersionLabel" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot3" unique_id=2133058225]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "v0.01"
+
+[node name="LastSaved" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot3" unique_id=2137784246]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.5
+offset_top = -49.0
+offset_right = 88.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Last saved:
+July 42nd 2039 at 30:20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveManagement" type="HBoxContainer" parent="gui/SaveMenu/Content" unique_id=1425784139]
+layout_mode = 2
+alignment = 1
+
+[node name="Copy" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=89021683]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_tbmy8")
+text = "Copy"
+
+[node name="Delete" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=1254198838]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_tbmy8")
+text = "Delete"
+
+[node name="Back" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=272233448]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_tbmy8")
 text = "Back"
 
 [connection signal="pressed" from="gui/buttons/version" to="." method="_on_version_pressed"]
+[connection signal="pressed" from="gui/buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="gui/buttons/Extras" to="." method="_on_extras_pressed"]
 [connection signal="pressed" from="gui/buttons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="gui/ButtonSet2/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="gui/SaveMenu/Content/SaveManagement/Back" to="gui/SaveMenu" method="_on_back_pressed"]

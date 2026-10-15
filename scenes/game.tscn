@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5i33ihrv3gjt"]
 
 [ext_resource type="PackedScene" uid="uid://d4ktuu1ds3g56" path="res://assets/3d/Kenney Train Kit/railroad-straight.fbx" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://eyv3muvjbsln" path="res://scenes/player_placeholder.tscn" id="2_yqjtg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cj0n"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -15,6 +16,12 @@ sky_material = SubResource("ProceduralSkyMaterial_8cj0n")
 background_mode = 2
 sky = SubResource("Sky_uwrxv")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
+shading_mode = 0
+albedo_color = Color(0.89726776, 0.4574327, 0.30340534, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy8r0"]
+
 [node name="Node3D" type="Node3D" unique_id=1240598990]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1583382272]
@@ -24,11 +31,56 @@ environment = SubResource("Environment_yqjtg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.37573242, -5.3691406)
 size = Vector3(20, 0.25, 30.738281)
 
-[node name="railroad-straight" parent="." unique_id=233166032 instance=ExtResource("1_uwrxv")]
+[node name="Rails" type="Node3D" parent="." unique_id=834131184]
+
+[node name="railroad-straight" parent="Rails" unique_id=233166032 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -4.603665)
 
-[node name="railroad-straight2" parent="." unique_id=1737503378 instance=ExtResource("1_uwrxv")]
+[node name="railroad-straight3" parent="Rails" unique_id=1461692026 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(0.9359241, 0, -0.35220176, 0, 1, 0, 0.35220176, 0, 0.9359241, 1.9054567, 0, -0.72344315)
+
+[node name="railroad-straight6" parent="Rails" unique_id=1162377227 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(0.9359241, 0, -0.35220176, 0, 1, 0, 0.35220176, 0, 0.9359241, 0.49772358, 0, 3.0173993)
+
+[node name="railroad-straight4" parent="Rails" unique_id=998448617 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(0.910288, 0, 0.4139756, 0, 1, 0, -0.4139756, 0, 0.910288, 1.9054567, 0, -0.72344315)
+
+[node name="railroad-straight5" parent="Rails" unique_id=1059199094 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(0.910288, 0, 0.4139756, 0, 1, 0, -0.4139756, 0, 0.910288, 3.539954, 0, 2.8706412)
+
+[node name="railroad-straight2" parent="Rails" unique_id=1737503378 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -8.582971)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1315079253]
-transform = Transform3D(0.19193721, 0.6646956, -0.7220389, -0.039454795, 0.7403493, 0.6710638, 0.9806139, -0.100314215, 0.16832602, -0.113947436, 1.7360784, 0.5946787)
+transform = Transform3D(0.09616266, 0.52886134, -0.8432429, -0.04394997, 0.8485986, 0.52720845, 0.9943948, -0.0136372745, 0.10484699, -3.2375133, 3.0113292, 1.6841073)
+fov = 40.0
+
+[node name="PlayerPlaceholder" parent="." unique_id=1585299764 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(-2.0949603e-08, 0.46233508, -0.19038457, -0.5, -2.1742826e-08, 2.2183066e-09, -6.2277943e-09, 0.19038457, 0.46233508, 0.6850593, 0.15039754, 1.589104)
+
+[node name="PlayerPlaceholder6" type="Node3D" parent="." unique_id=1662804130]
+transform = Transform3D(-2.0949603e-08, 0.43929908, 0.23878098, -0.5, -1.5432127e-08, -1.5476463e-08, -6.227794e-09, -0.23878098, 0.43929908, 2.7058632, 0.2065827, 1.8692491)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerPlaceholder6" unique_id=45884040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radius = 0.3
+height = 1.0
+cone = true
+material = SubResource("StandardMaterial3D_lnu2h")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="PlayerPlaceholder6" unique_id=1085025262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0727572, 0)
+radius = 0.25
+material = SubResource("StandardMaterial3D_xy8r0")
+
+[node name="PlayerPlaceholder2" parent="." unique_id=1672002649 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(-2.0949603e-08, 0.46233508, -0.19038457, -0.5, -2.1742826e-08, 2.2183066e-09, -6.2277943e-09, 0.19038457, 0.46233508, 0.5125629, 0.15039754, 2.0079992)
+
+[node name="PlayerPlaceholder3" parent="." unique_id=304875367 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(-2.0949601e-08, 0.46790344, -0.17625658, -0.5, -2.1800165e-08, 1.5569981e-09, -6.2277943e-09, 0.17625658, 0.46790344, 0.37638825, 0.15039754, 2.4206104)
+
+[node name="PlayerPlaceholder4" parent="." unique_id=476067844 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(-2.0949601e-08, 0.46790344, -0.17625658, -0.5, -2.1800165e-08, 1.5569981e-09, -6.2277943e-09, 0.17625658, 0.46790344, 0.20389181, 0.15039754, 2.8395054)
+
+[node name="PlayerPlaceholder5" parent="." unique_id=1847845056 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(-2.0949601e-08, 0.46790344, -0.17625658, -0.5, -2.1800165e-08, 1.5569981e-09, -6.2277943e-09, 0.17625658, 0.46790344, 0.04819818, 0.15039754, 3.252821)

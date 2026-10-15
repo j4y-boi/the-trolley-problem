@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://eyv3muvjbsln"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c12me"]
+shading_mode = 0
+albedo_color = Color(0.33545968, 0.6797226, 0.5387734, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy8r0"]
+
+[node name="PlayerPlaceholder" type="Node3D" unique_id=1585299764]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=45884040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radius = 0.3
+height = 1.0
+cone = true
+material = SubResource("StandardMaterial3D_c12me")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1085025262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0727572, 0)
+radius = 0.25
+material = SubResource("StandardMaterial3D_xy8r0")
