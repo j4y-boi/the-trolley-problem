@@ -23,24 +23,24 @@ sky_material = SubResource("ProceduralSkyMaterial_7q3kq")
 background_mode = 2
 sky = SubResource("Sky_uwrxv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk1qb"]
 resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tbmy8"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_5dd4i"]
 size = Vector2(2, 1)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk1qb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgwnu"]
 resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_5dd4i"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_flqon"]
 size = Vector2(2, 1)
 orientation = 2
 
@@ -87,6 +87,33 @@ tracks/0/keys = {
 "values": [Vector3(-0.28972465, 2.0367992, 0), Vector3(0.2691546, 2.0368717, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_flqon"]
+resource_name = "pan_to_options"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.30778652, 1),
+"update": 0,
+"values": [Vector3(0.93485117, -0.1306004, -2.5947394), Vector3(1.1685452, 0.8496561, -2.4369783)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.30778652, 1),
+"update": 0,
+"values": [Vector3(0.2691546, 2.0368717, 0), Vector3(-0.22389796, 1.4085196, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_5dd4i"]
 resource_name = "pan_to_save"
 length = 1.5
@@ -119,8 +146,19 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_7q3kq"),
 &"pan": SubResource("Animation_5mbse"),
+&"pan_to_options": SubResource("Animation_flqon"),
 &"pan_to_save": SubResource("Animation_5dd4i")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dd4i"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lgwnu"]
+size = Vector2(0.97, 0.51)
+orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q3kq"]
 transparency = 1
@@ -416,8 +454,8 @@ text = "Press Space to skip opening logo's"
 [node name="RichText3D" type="MeshInstance3D" parent="." unique_id=2054702284]
 process_mode = 3
 transform = Transform3D(-0.45235434, 0.34973872, 0.82040167, 0.0018804213, 0.9202713, -0.3912765, -0.89183646, -0.17545286, -0.4169463, -1.3524762, 0.93865275, -1.0691775)
-material_override = SubResource("StandardMaterial3D_oa1go")
-mesh = SubResource("PlaneMesh_tbmy8")
+material_override = SubResource("StandardMaterial3D_jk1qb")
+mesh = SubResource("PlaneMesh_5dd4i")
 script = ExtResource("3_5dd4i")
 text = "[wave amp=30.0 freq=2.0 connected=2]The Trolley Problem[/wave]"
 font_size = 120
@@ -429,8 +467,8 @@ unshaded = false
 
 [node name="RichText3D2" type="MeshInstance3D" parent="." unique_id=6236405]
 transform = Transform3D(-0.45235434, 0.3497387, 0.82040155, 0.0018804212, 0.9202712, -0.39127663, -0.89183646, -0.17545292, -0.41694638, -1.4717121, 0.624906, -1.0093607)
-material_override = SubResource("StandardMaterial3D_jk1qb")
-mesh = SubResource("PlaneMesh_5dd4i")
+material_override = SubResource("StandardMaterial3D_lgwnu")
+mesh = SubResource("PlaneMesh_flqon")
 script = ExtResource("3_5dd4i")
 text = "[shake rate=20.0 level=5 connected=1](final title still on the way lol)[/shake]"
 font_size = 53
@@ -440,7 +478,7 @@ text_width = 1075.0
 render_continuously = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1656439035]
-transform = Transform3D(0.9792082, -0.0064730532, 0.20275483, 0, 0.9994908, 0.031909265, -0.20285812, -0.031245813, 0.9787096, 0.6325189, 0.32526726, 0.7247312)
+transform = Transform3D(-0.4493837, 0.23755364, 0.8611751, 0, 0.96399605, -0.26591662, -0.89333886, -0.119498596, -0.4332041, 0.93485117, -0.1306004, -2.5947394)
 current = true
 fov = 25.4
 
@@ -448,6 +486,18 @@ fov = 25.4
 reset_on_save = false
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_natt5")
+
+[node name="RichText3D3" type="MeshInstance3D" parent="." unique_id=1105799480]
+transform = Transform3D(0.9735846, 0.17131408, -0.1509442, -0.17329967, 0.98486906, 0, 0.14866029, 0.026158588, 0.9885422, 0.8272648, 0.78433186, -3.4684834)
+material_override = SubResource("StandardMaterial3D_5dd4i")
+mesh = SubResource("PlaneMesh_lgwnu")
+script = ExtResource("3_5dd4i")
+text = "Save Management"
+font_size = 120
+outline_size = 20
+size = Vector2(0.97, 0.51)
+text_width = 850.0
+metadata/_custom_type_script = "uid://cofw7sywoopgu"
 
 [node name="AmbientParticles" type="CPUParticles3D" parent="." unique_id=1204721277]
 transform = Transform3D(1.5097756, 0, 0, 0, 1, 0, 0, 0, 2.3048024, -2.1561775, 0.1869686, -1.838756)
@@ -634,7 +684,7 @@ anchor_bottom = 0.5
 offset_left = -340.0
 offset_top = -851.0
 offset_right = 340.0
-offset_bottom = -468.0
+offset_bottom = -467.9999
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ajci")
@@ -751,21 +801,27 @@ layout_mode = 2
 alignment = 1
 
 [node name="Copy" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=89021683]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
+theme_override_font_sizes/font_size = 30
 text = "Copy"
 
-[node name="Delete" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=1254198838]
-custom_minimum_size = Vector2(200, 0)
+[node name="Delete" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=361983231]
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
+theme_override_font_sizes/font_size = 30
 text = "Delete"
 
-[node name="Back" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=272233448]
-custom_minimum_size = Vector2(200, 0)
+[node name="Back" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=1160552273]
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
+theme_override_font_sizes/font_size = 30
 text = "Back"
 
 [connection signal="pressed" from="gui/buttons/version" to="." method="_on_version_pressed"]

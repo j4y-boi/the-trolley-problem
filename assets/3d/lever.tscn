@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b8wwvnbnvo5ec"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7h66"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3x3a"]
+albedo_color = Color(0.5370113, 0.5370113, 0.5370113, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnfx3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Node3D" type="Node3D" unique_id=102983571]
+
+[node name="LeverFull" type="CSGCombiner3D" parent="." unique_id=158244048]
+
+[node name="Base" type="CSGCombiner3D" parent="LeverFull" unique_id=442780814]
+
+[node name="Base" type="CSGCylinder3D" parent="LeverFull/Base" unique_id=1027754135]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+height = 0.25
+material = SubResource("StandardMaterial3D_t7h66")
+
+[node name="delete" type="CSGBox3D" parent="LeverFull/Base" unique_id=1712045509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2734375, 0)
+operation = 2
+size = Vector3(1, 0.5, 1)
+
+[node name="Lever" type="CSGCombiner3D" parent="LeverFull" unique_id=529128001]
+
+[node name="Rod" type="CSGCylinder3D" parent="LeverFull/Lever" unique_id=1392959847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+radius = 0.05
+height = 0.75
+material = SubResource("StandardMaterial3D_o3x3a")
+
+[node name="Ball" type="CSGSphere3D" parent="LeverFull/Lever" unique_id=1982855704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+radius = 0.125
+material = SubResource("StandardMaterial3D_nnfx3")

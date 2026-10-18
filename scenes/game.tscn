@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://c5i33ihrv3gjt"]
 
+[ext_resource type="Script" uid="uid://v5ag6rwd87gc" path="res://scripts/game1.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://d4ktuu1ds3g56" path="res://assets/3d/Kenney Train Kit/railroad-straight.fbx" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://eyv3muvjbsln" path="res://scenes/player_placeholder.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://uiq4ho1xqsii" path="res://assets/3d/Kenney Train Kit/train-tram-classic.fbx" id="3_lnu2h"]
+[ext_resource type="FontFile" uid="uid://davrph47f3fam" path="res://assets/fonts/ClockFont.ttf" id="5_p57ef"]
+[ext_resource type="PackedScene" uid="uid://catbifmfbfd2h" path="res://assets/3d/lever_mesh.tscn" id="6_u5sy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cj0n"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -16,71 +20,318 @@ sky_material = SubResource("ProceduralSkyMaterial_8cj0n")
 background_mode = 2
 sky = SubResource("Sky_uwrxv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
+albedo_color = Color(0.37036446, 0.3703645, 0.37036446, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c12me"]
 shading_mode = 0
-albedo_color = Color(0.89726776, 0.4574327, 0.30340534, 1)
+albedo_color = Color(0.04755766, 0.047557645, 0.047557645, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
+shading_mode = 0
+albedo_color = Color(0.8848392, 0.47945684, 0.10812036, 1)
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpeedcamRail:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -38.804756)]
+}
+
+[sub_resource type="Animation" id="Animation_iywne"]
+resource_name = "rail"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpeedcamRail:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -29.191387), Vector3(0, 0, -40.63458)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
+_data = {
+&"RESET": SubResource("Animation_lbhrr"),
+&"rail": SubResource("Animation_iywne")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy8r0"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
 
-[node name="Node3D" type="Node3D" unique_id=1240598990]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c12me"]
+material = SubResource("StandardMaterial3D_xy8r0")
+radius = 0.01
+height = 1.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1583382272]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(0, 0.17124721, 0.26968318, 0.61960787)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="Theme" id="Theme_lbhrr"]
+Button/styles/normal = SubResource("StyleBoxFlat_iywne")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tnpc"]
+albedo_color = Color(0.055999998, 0.0628, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3x3a"]
+albedo_color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+
+[node name="Control" type="Control" unique_id=335481491]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lbhrr")
+
+[node name="View" type="SubViewportContainer" parent="." unique_id=1447490528]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="View" unique_id=1176178418]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="train-tram-classic" parent="View/SubViewport" unique_id=347249602 instance=ExtResource("3_lnu2h")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.8831341, 0.07394841, -7.291685)
+
+[node name="game" type="Node3D" parent="View/SubViewport" unique_id=1240598990]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="View/SubViewport/game" unique_id=1583382272]
 environment = SubResource("Environment_yqjtg")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1457329896]
+[node name="Floor" type="CSGBox3D" parent="View/SubViewport/game" unique_id=1457329896]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.37573242, -5.3691406)
 size = Vector3(20, 0.25, 30.738281)
+material = SubResource("StandardMaterial3D_lbhrr")
 
-[node name="Rails" type="Node3D" parent="." unique_id=834131184]
+[node name="Wall" type="CSGBox3D" parent="View/SubViewport/game" unique_id=271353596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.16568, -12.804512)
+size = Vector3(20, 9.332825, 2.1462555)
 
-[node name="railroad-straight" parent="Rails" unique_id=233166032 instance=ExtResource("1_uwrxv")]
+[node name="Tunnel" type="CSGCylinder3D" parent="View/SubViewport/game" unique_id=550514308]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1.7065692, 0, 1, -7.459651e-08, 1.9388938, -0.09285631, -11.727864)
+radius = 1.7675781
+height = 0.119
+sides = 16
+material = SubResource("StandardMaterial3D_c12me")
+
+[node name="Rails" type="Node3D" parent="View/SubViewport/game" unique_id=834131184]
+
+[node name="railroad-straight" parent="View/SubViewport/game/Rails" unique_id=233166032 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -4.603665)
 
-[node name="railroad-straight3" parent="Rails" unique_id=1461692026 instance=ExtResource("1_uwrxv")]
+[node name="railroad-straight3" parent="View/SubViewport/game/Rails" unique_id=1461692026 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(0.9359241, 0, -0.35220176, 0, 1, 0, 0.35220176, 0, 0.9359241, 1.9054567, 0, -0.72344315)
 
-[node name="railroad-straight6" parent="Rails" unique_id=1162377227 instance=ExtResource("1_uwrxv")]
+[node name="railroad-straight6" parent="View/SubViewport/game/Rails" unique_id=1162377227 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(0.9359241, 0, -0.35220176, 0, 1, 0, 0.35220176, 0, 0.9359241, 0.49772358, 0, 3.0173993)
 
-[node name="railroad-straight4" parent="Rails" unique_id=998448617 instance=ExtResource("1_uwrxv")]
+[node name="railroad-straight4" parent="View/SubViewport/game/Rails" unique_id=998448617 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(0.910288, 0, 0.4139756, 0, 1, 0, -0.4139756, 0, 0.910288, 1.9054567, 0, -0.72344315)
 
-[node name="railroad-straight5" parent="Rails" unique_id=1059199094 instance=ExtResource("1_uwrxv")]
+[node name="railroad-straight5" parent="View/SubViewport/game/Rails" unique_id=1059199094 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(0.910288, 0, 0.4139756, 0, 1, 0, -0.4139756, 0, 0.910288, 3.539954, 0, 2.8706412)
 
-[node name="railroad-straight2" parent="Rails" unique_id=1737503378 instance=ExtResource("1_uwrxv")]
+[node name="railroad-straight2" parent="View/SubViewport/game/Rails" unique_id=1737503378 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -8.582971)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1315079253]
-transform = Transform3D(0.09616266, 0.52886134, -0.8432429, -0.04394997, 0.8485986, 0.52720845, 0.9943948, -0.0136372745, 0.10484699, -3.2375133, 3.0113292, 1.6841073)
-fov = 40.0
+[node name="railroad-straight7" parent="View/SubViewport/game/Rails" unique_id=343935840 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9054567, 0, -12.576041)
 
-[node name="PlayerPlaceholder" parent="." unique_id=1585299764 instance=ExtResource("2_yqjtg")]
+[node name="Camera3D" type="Camera3D" parent="View/SubViewport/game" unique_id=1315079253]
+transform = Transform3D(0.1536342, 0.74367493, -0.650649, 0, 0.65846646, 0.7526101, 0.98812777, -0.115626656, 0.10116297, -5.669378, 8.211202, 2.0982857)
+current = true
+fov = 20.0
+
+[node name="PlayerPlaceholder" parent="View/SubViewport/game" unique_id=1585299764 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-2.0949603e-08, 0.46233508, -0.19038457, -0.5, -2.1742826e-08, 2.2183066e-09, -6.2277943e-09, 0.19038457, 0.46233508, 0.6850593, 0.15039754, 1.589104)
+Face = "D:"
+FaceRotation = 90
 
-[node name="PlayerPlaceholder6" type="Node3D" parent="." unique_id=1662804130]
-transform = Transform3D(-2.0949603e-08, 0.43929908, 0.23878098, -0.5, -1.5432127e-08, -1.5476463e-08, -6.227794e-09, -0.23878098, 0.43929908, 2.7058632, 0.2065827, 1.8692491)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerPlaceholder6" unique_id=45884040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-radius = 0.3
-height = 1.0
-cone = true
-material = SubResource("StandardMaterial3D_lnu2h")
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="PlayerPlaceholder6" unique_id=1085025262]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0727572, 0)
-radius = 0.25
-material = SubResource("StandardMaterial3D_xy8r0")
-
-[node name="PlayerPlaceholder2" parent="." unique_id=1672002649 instance=ExtResource("2_yqjtg")]
+[node name="PlayerPlaceholder2" parent="View/SubViewport/game" unique_id=1672002649 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-2.0949603e-08, 0.46233508, -0.19038457, -0.5, -2.1742826e-08, 2.2183066e-09, -6.2277943e-09, 0.19038457, 0.46233508, 0.5125629, 0.15039754, 2.0079992)
+Face = ":c"
 
-[node name="PlayerPlaceholder3" parent="." unique_id=304875367 instance=ExtResource("2_yqjtg")]
+[node name="PlayerPlaceholder3" parent="View/SubViewport/game" unique_id=304875367 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-2.0949601e-08, 0.46790344, -0.17625658, -0.5, -2.1800165e-08, 1.5569981e-09, -6.2277943e-09, 0.17625658, 0.46790344, 0.37638825, 0.15039754, 2.4206104)
+Face = ":L"
 
-[node name="PlayerPlaceholder4" parent="." unique_id=476067844 instance=ExtResource("2_yqjtg")]
+[node name="PlayerPlaceholder4" parent="View/SubViewport/game" unique_id=476067844 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-2.0949601e-08, 0.46790344, -0.17625658, -0.5, -2.1800165e-08, 1.5569981e-09, -6.2277943e-09, 0.17625658, 0.46790344, 0.20389181, 0.15039754, 2.8395054)
+Face = ":J"
 
-[node name="PlayerPlaceholder5" parent="." unique_id=1847845056 instance=ExtResource("2_yqjtg")]
+[node name="PlayerPlaceholder5" parent="View/SubViewport/game" unique_id=1847845056 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-2.0949601e-08, 0.46790344, -0.17625658, -0.5, -2.1800165e-08, 1.5569981e-09, -6.2277943e-09, 0.17625658, 0.46790344, 0.04819818, 0.15039754, 3.252821)
+Face = ";-;"
+FaceRotation = 0
+
+[node name="PlayerPlaceholder6" parent="View/SubViewport/game" unique_id=1221985945 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(-2.6593339e-08, 0.46168488, 0.1919559, -0.5, -2.3342269e-08, -1.3127476e-08, -3.1601415e-09, -0.1919559, 0.46168488, 2.73422, 0.16336766, 1.8574592)
+surface_material_override/0 = SubResource("StandardMaterial3D_iywne")
+
+[node name="DoSomething" type="Marker3D" parent="View/SubViewport" unique_id=1739677625]
+transform = Transform3D(0.89366204, 0, 0.44874066, 0, 1, 0, -0.44874066, 0, 0.89366204, 2.2173765, 1.184705, 0.2352125)
+
+[node name="DoNothing" type="Marker3D" parent="View/SubViewport" unique_id=942664575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08022034, 0.79877734, 0.37993503)
+
+[node name="SpeedcamTrain" parent="View/SubViewport" unique_id=44215235 instance=ExtResource("3_lnu2h")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.048027515, 0.07394841, -31.143677)
+
+[node name="SpeedcamRail" type="Node3D" parent="View/SubViewport" unique_id=801992656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.804756)
+
+[node name="railroad-straight8" parent="View/SubViewport/SpeedcamRail" unique_id=1479539422 instance=ExtResource("1_uwrxv")]
+
+[node name="railroad-straight9" parent="View/SubViewport/SpeedcamRail" unique_id=1941799761 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9595718)
+
+[node name="railroad-straight10" parent="View/SubViewport/SpeedcamRail" unique_id=1527229016 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.9112244)
+
+[node name="railroad-straight11" parent="View/SubViewport/SpeedcamRail" unique_id=1402962078 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.870796)
+
+[node name="railroad-straight12" parent="View/SubViewport/SpeedcamRail" unique_id=658244889 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.962082)
+
+[node name="railroad-straight13" parent="View/SubViewport/SpeedcamRail" unique_id=408980734 instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.00251)
+
+[node name="SpeedcamAnimate" type="AnimationPlayer" parent="View/SubViewport" unique_id=347100644]
+libraries/ = SubResource("AnimationLibrary_p57ef")
+autoplay = &"rail"
+
+[node name="SpeedcamSpeed" type="CPUParticles3D" parent="View/SubViewport" unique_id=1320935539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5917984, 1.4560579, -28.555658)
+amount = 20
+lifetime = 0.25
+mesh = SubResource("CapsuleMesh_c12me")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, -500)
+color = Color(0, 0, 0, 1)
+
+[node name="SpeedcamSpeed2" type="CPUParticles3D" parent="View/SubViewport" unique_id=33783831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5824889, 1.4560579, -28.555658)
+amount = 20
+lifetime = 0.25
+mesh = SubResource("CapsuleMesh_c12me")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, -500)
+color = Color(0, 0, 0, 1)
+
+[node name="DoNothing" type="Control" parent="." unique_id=1586236856]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = 188.0
+offset_right = 31.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="DoNothing" unique_id=708602172]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 56.0
+theme = SubResource("Theme_lbhrr")
+text = "Do nothing, 
+5 people will get hit"
+
+[node name="DoSomething" type="Control" parent="." unique_id=87616068]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.0
+offset_top = -132.0
+offset_right = 91.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="DoSomething" unique_id=1433716240]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 56.0
+theme = SubResource("Theme_lbhrr")
+text = "Do something,
+only 1 person will be hit"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1853936961]
+layout_mode = 0
+offset_top = 540.0
+offset_right = 320.0
+offset_bottom = 720.0
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="SubViewportContainer" unique_id=318254786]
+custom_minimum_size = Vector2(320, 180)
+custom_maximum_size = Vector2(320, 180)
+layout_mode = 2
+
+[node name="Timer" type="Label" parent="SubViewportContainer/Content" unique_id=1483361803]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_p57ef")
+text = "00:03:00"
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2133859126]
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="Speedcam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=93713128]
+transform = Transform3D(0.9209746, -0.1838284, -0.3435301, 0, 0.8816995, -0.47181138, 0.38962263, 0.4345263, 0.81202286, -0.29411268, 0.15660572, -29.426039)
+current = true
+fov = 71.9217
+
+[node name="CSGBakedMeshInstance3D" parent="." unique_id=229088155 instance=ExtResource("6_u5sy4")]
+transform = Transform3D(-0.19411428, 0, 0.7244444, 0, 0.75, 0, -0.7244444, 0, -0.19411428, 0.6592319, -0.28131175, -0.65735877)
+surface_material_override/0 = SubResource("StandardMaterial3D_0tnpc")
+surface_material_override/3 = SubResource("StandardMaterial3D_o3x3a")

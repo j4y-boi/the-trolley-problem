@@ -94,11 +94,12 @@ func _unhandled_input(event: InputEvent):
 		gui_transition.play("intro")
 
 func _on_extras_pressed() -> void:
-	gui_transition.play_backwards("intro")
-	await gui_transition.animation_finished
-	gui_transition.play("intro2")
-	button_set_2.show()
-	buttons.hide()
+	if enable_parallax:
+		gui_transition.play_backwards("intro")
+		await gui_transition.animation_finished
+		gui_transition.play("intro2")
+		button_set_2.show()
+		buttons.hide()
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
