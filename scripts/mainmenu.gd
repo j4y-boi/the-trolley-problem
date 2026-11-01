@@ -15,6 +15,7 @@ extends Control
 @onready var buttons: HBoxContainer = $gui/buttons
 @onready var button_set_2: HBoxContainer = $gui/ButtonSet2
 @onready var version_text: Label = $gui/buttons/version/VersionText
+@onready var label: Label = $logo/Label
 
 var stength:float = 0.01
 var origin
@@ -65,6 +66,7 @@ func do_it() -> void:
 		var tween = self.create_tween()
 		tween.tween_property(godot, "modulate:a", 0, 1.5)
 		tween.tween_interval(3)
+		label.hide()
 		await tween.finished
 	
 	if not skipping:
@@ -126,3 +128,22 @@ func _on_play_pressed() -> void:
 		await animation.animation_finished
 		enable_parallax = true
 		origin = camera.position 
+
+func _on_options_pressed() -> void:
+	if not animation.is_playing():
+		enable_parallax = false
+		animation.play("pan_to_options")
+		
+		gui_transition.play_backwards("intro")
+		await gui_transition.animation_finished
+		gui_transition.play("intro4")
+		
+		await animation.animation_finished
+		enable_parallax = true
+		origin = camera.position 
+
+func _on_button_pressed() -> void:
+	TransitionHandler.fade_out()
+	await TransitionHandler.fade_out_finished
+	get_tree().change_scene_to_packed(load("res://scenes/game.tscn"))
+	await TransitionHandler.fade_in()

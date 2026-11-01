@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cn4p8lwv5m6ri" path="res://scenes/main_menu_train.tscn" id="8_7b55j"]
 [ext_resource type="Theme" uid="uid://cpe5vv3vnpuik" path="res://assets/gui_theme.tres" id="8_tbmy8"]
 [ext_resource type="Script" uid="uid://bu5k1xad3onsp" path="res://scripts/save_menu.gd" id="9_jk1qb"]
+[ext_resource type="Script" uid="uid://dg4gms6wbc44" path="res://scripts/settings.gd" id="10_5dd4i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q3kq"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -23,24 +24,24 @@ sky_material = SubResource("ProceduralSkyMaterial_7q3kq")
 background_mode = 2
 sky = SubResource("Sky_uwrxv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk1qb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dd4i"]
 resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_5dd4i"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_lgwnu"]
 size = Vector2(2, 1)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgwnu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flqon"]
 resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_flqon"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_rcqid"]
 size = Vector2(2, 1)
 orientation = 2
 
@@ -150,14 +151,15 @@ _data = {
 &"pan_to_save": SubResource("Animation_5dd4i")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dd4i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ajci"]
+resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_lgwnu"]
-size = Vector2(0.97, 0.51)
+[sub_resource type="PlaneMesh" id="PlaneMesh_7b55j"]
+size = Vector2(1.44, 1.5)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q3kq"]
@@ -213,6 +215,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(300, -491)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Settings:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1299, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_tbmy8"]
 resource_name = "intro"
@@ -260,12 +274,28 @@ tracks/0/keys = {
 "values": [Vector2(300, -491), Vector2(300, 168.5)]
 }
 
+[sub_resource type="Animation" id="Animation_rcqid"]
+resource_name = "intro4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.29730177, 3.363586),
+"update": 0,
+"values": [Vector2(1299, 0), Vector2(880, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jk1qb"]
 _data = {
 &"RESET": SubResource("Animation_oa1go"),
 &"intro": SubResource("Animation_tbmy8"),
 &"intro2": SubResource("Animation_jk1qb"),
-&"intro3": SubResource("Animation_lgwnu")
+&"intro3": SubResource("Animation_lgwnu"),
+&"intro4": SubResource("Animation_rcqid")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
@@ -447,15 +477,18 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="logo" unique_id=1076858836]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 276.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.31764707)
 text = "Press Space to skip opening logo's"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RichText3D" type="MeshInstance3D" parent="." unique_id=2054702284]
 process_mode = 3
 transform = Transform3D(-0.45235434, 0.34973872, 0.82040167, 0.0018804213, 0.9202713, -0.3912765, -0.89183646, -0.17545286, -0.4169463, -1.3524762, 0.93865275, -1.0691775)
-material_override = SubResource("StandardMaterial3D_jk1qb")
-mesh = SubResource("PlaneMesh_5dd4i")
+material_override = SubResource("StandardMaterial3D_5dd4i")
+mesh = SubResource("PlaneMesh_lgwnu")
 script = ExtResource("3_5dd4i")
 text = "[wave amp=30.0 freq=2.0 connected=2]The Trolley Problem[/wave]"
 font_size = 120
@@ -467,8 +500,8 @@ unshaded = false
 
 [node name="RichText3D2" type="MeshInstance3D" parent="." unique_id=6236405]
 transform = Transform3D(-0.45235434, 0.3497387, 0.82040155, 0.0018804212, 0.9202712, -0.39127663, -0.89183646, -0.17545292, -0.41694638, -1.4717121, 0.624906, -1.0093607)
-material_override = SubResource("StandardMaterial3D_lgwnu")
-mesh = SubResource("PlaneMesh_flqon")
+material_override = SubResource("StandardMaterial3D_flqon")
+mesh = SubResource("PlaneMesh_rcqid")
 script = ExtResource("3_5dd4i")
 text = "[shake rate=20.0 level=5 connected=1](final title still on the way lol)[/shake]"
 font_size = 53
@@ -478,7 +511,7 @@ text_width = 1075.0
 render_continuously = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1656439035]
-transform = Transform3D(-0.4493837, 0.23755364, 0.8611751, 0, 0.96399605, -0.26591662, -0.89333886, -0.119498596, -0.4332041, 0.93485117, -0.1306004, -2.5947394)
+transform = Transform3D(0.9792082, -0.0064730532, 0.20275483, 0, 0.9994908, 0.031909265, -0.20285812, -0.031245813, 0.9787096, 0.6325189, 0.32526726, 0.7247312)
 current = true
 fov = 25.4
 
@@ -488,15 +521,16 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_natt5")
 
 [node name="RichText3D3" type="MeshInstance3D" parent="." unique_id=1105799480]
-transform = Transform3D(0.9735846, 0.17131408, -0.1509442, -0.17329967, 0.98486906, 0, 0.14866029, 0.026158588, 0.9885422, 0.8272648, 0.78433186, -3.4684834)
-material_override = SubResource("StandardMaterial3D_5dd4i")
-mesh = SubResource("PlaneMesh_lgwnu")
+transform = Transform3D(0.9735846, 0.17131408, -0.1509442, -0.17329967, 0.98486906, 0, 0.14866029, 0.026158588, 0.9885422, 0.7121553, 0.7809784, -3.48606)
+material_override = SubResource("StandardMaterial3D_1ajci")
+mesh = SubResource("PlaneMesh_7b55j")
 script = ExtResource("3_5dd4i")
-text = "Save Management"
+text = "Only the first level is implemented,
+no save files necessary lol"
 font_size = 120
 outline_size = 20
-size = Vector2(0.97, 0.51)
-text_width = 850.0
+size = Vector2(1.44, 1.5)
+text_width = 1905.0
 metadata/_custom_type_script = "uid://cofw7sywoopgu"
 
 [node name="AmbientParticles" type="CPUParticles3D" parent="." unique_id=1204721277]
@@ -588,7 +622,6 @@ text = "Extra's"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
-disabled = true
 text = "Options"
 
 [node name="Exit" type="Button" parent="gui/buttons" unique_id=18732194]
@@ -684,11 +717,14 @@ anchor_bottom = 0.5
 offset_left = -340.0
 offset_top = -851.0
 offset_right = 340.0
-offset_bottom = -467.9999
+offset_bottom = -468.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ajci")
 script = ExtResource("9_jk1qb")
+
+[node name="Button" type="Button" parent="gui/SaveMenu" unique_id=1072682125]
+layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="gui/SaveMenu" unique_id=447229420]
 layout_mode = 2
@@ -703,6 +739,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SaveSlots" type="HBoxContainer" parent="gui/SaveMenu/Content" unique_id=1147838689]
+z_index = -1
 layout_mode = 2
 theme_override_constants/separation = 40
 
@@ -711,6 +748,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7b55j")
+disabled = true
 text = "Slot 1"
 
 [node name="VersionLabel" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot1" unique_id=1826876931]
@@ -741,6 +779,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7b55j")
+disabled = true
 text = "Slot 1"
 
 [node name="VersionLabel" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot2" unique_id=1530567843]
@@ -771,6 +810,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7b55j")
+disabled = true
 text = "Slot 1"
 
 [node name="VersionLabel" type="Label" parent="gui/SaveMenu/Content/SaveSlots/Slot3" unique_id=2133058225]
@@ -806,6 +846,7 @@ custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
 theme_override_font_sizes/font_size = 30
+disabled = true
 text = "Copy"
 
 [node name="Delete" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=361983231]
@@ -814,6 +855,7 @@ custom_maximum_size = Vector2(-1, 50)
 layout_mode = 2
 theme = ExtResource("8_tbmy8")
 theme_override_font_sizes/font_size = 30
+disabled = true
 text = "Delete"
 
 [node name="Back" type="Button" parent="gui/SaveMenu/Content/SaveManagement" unique_id=1160552273]
@@ -824,9 +866,81 @@ theme = ExtResource("8_tbmy8")
 theme_override_font_sizes/font_size = 30
 text = "Back"
 
+[node name="Label" type="Label" parent="gui/SaveMenu" unique_id=411134305]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "save slots aren't functional yet lol
+
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="gui/SaveMenu/Label" unique_id=1136615034]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -31.0
+offset_right = 47.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 26
+text = "play level 1"
+
+[node name="Settings" type="CenterContainer" parent="gui" unique_id=889068884]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_right = 419.00073
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("10_5dd4i")
+
+[node name="Panel" type="PanelContainer" parent="gui/Settings" unique_id=1878955075]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="gui/Settings/Panel" unique_id=1865878141]
+custom_minimum_size = Vector2(400, 720)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="gui/Settings/Panel/Content" unique_id=1619858995]
+layout_mode = 2
+theme_override_font_sizes/font_size = 65
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Note" type="RichTextLabel" parent="gui/Settings/Panel/Content" unique_id=448385354]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/bold_font_size = 41
+bbcode_enabled = true
+text = "[b]COMING SOON[/b]
+im busy, this isn't doing much for now anyway"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="gui/Settings/Panel/Content" unique_id=1556397158]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Return"
+
 [connection signal="pressed" from="gui/buttons/version" to="." method="_on_version_pressed"]
 [connection signal="pressed" from="gui/buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="gui/buttons/Extras" to="." method="_on_extras_pressed"]
+[connection signal="pressed" from="gui/buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="gui/buttons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="gui/ButtonSet2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="gui/SaveMenu/Content/SaveManagement/Back" to="gui/SaveMenu" method="_on_back_pressed"]
+[connection signal="pressed" from="gui/SaveMenu/Label/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="gui/Settings/Panel/Content/Return" to="gui/Settings" method="_on_return_pressed"]

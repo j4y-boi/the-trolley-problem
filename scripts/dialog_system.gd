@@ -7,10 +7,10 @@ extends Control
 
 var dialog_shown = false
 
-func show_dialog(name:String,dialog_text:String,photo_path:String):
+func show_dialog(char_name:String,dialog_text:String,photo_path:String):
 	if not dialog_shown:
 		dialog_shown = true
-		dialog_name.text = name
+		dialog_name.text = char_name
 		dialog.text = dialog_text
 		photo.texture = load(photo_path)
 		animation_player.play("up")

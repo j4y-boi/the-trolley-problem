@@ -21,6 +21,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 GameState="*uid://dj4huw3lnooag"
 DialogSystem="*uid://c6cyl856567nc"
 SaveSystem="*uid://b5a4m2smwbkvm"
+TransitionHandler="*uid://bo5elcopo5ft0"
 
 [display]
 

@@ -212,4 +212,3 @@ func _notification(what: int) -> void:
 		_standard_mat.albedo_texture = null
 	elif what == NOTIFICATION_EDITOR_POST_SAVE:
 		_standard_mat.albedo_texture = _subviewport.get_texture()
-

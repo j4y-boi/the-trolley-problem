@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bo5elcopo5ft0"]
+
+[ext_resource type="Script" uid="uid://cul6f1oc6oiv3" path="res://scripts/transition_handler.gd" id="1_pelvw"]
+[ext_resource type="Shader" uid="uid://dum35x5jj2c3e" path="res://scripts/transition.gdshader" id="2_xkoud"]
+[ext_resource type="Texture2D" uid="uid://c4e815xu0c0wo" path="res://assets/image/transition.png" id="3_x2hlx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c12me"]
+shader = ExtResource("2_xkoud")
+shader_parameter/mask = ExtResource("3_x2hlx")
+shader_parameter/scale = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=534169006]
+script = ExtResource("1_pelvw")
+
+[node name="Mask" type="ColorRect" parent="." unique_id=123832854]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_c12me")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
