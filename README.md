@@ -1,3 +1,6 @@
+> [!NOTE]  
+> This branch contains the code as it was when I submitted this game for [Stardance](https://stardance.hackclub.com/).
+
 # The Trolley Problem
 This game is going to be about trying to stop the trolley problem from ever even happening.
 
